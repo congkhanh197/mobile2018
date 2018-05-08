@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS m_users
 		type character varying(50),
         third_party_id character varying(100),
 		created_at timestamp not null default now(),
-        modified_at timestamp not null default now(),
+    	updated_at timestamp not null default now(),
 		constraint user_pkey primary key (id),
 		constraint user_email_unique unique (email),
         constraint user_username_unique unique (username)
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS m_products
         price int(11) unsigned NOT NULL,
         creator_id int(11) unsigned NOT NULL,
 		created_at timestamp not null default now(),
-        modified_at timestamp not null default now(),
+        updated_at timestamp not null default now(),
         type character varying(50),
 		constraint product_pkey primary key (id),
         constraint product_creatorid_foreign  foreign key (creator_id)
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS m_pictures
 		product_id int(11) unsigned NOT NULL,
         link text,
 		created_at timestamp not null default now(),
-        modified_at timestamp not null default now(),
+        updated_at timestamp not null default now(),
 		constraint picture_pkey primary key (id),
         constraint picture_product_id_foreign  foreign key (product_id)
 					REFERENCES m_products (id) MATCH SIMPLE
