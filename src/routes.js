@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
-import distanceController from './controllers/distance';
+import userController from './controllers/users';
+import loginController from './controllers/login';
 
 /**
  * Contains all API routes for the application.
@@ -14,7 +15,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.use('/distance', distanceController);
-
+router.use('/users', userController);
+router.use('/login', loginController);
 
 export default router;

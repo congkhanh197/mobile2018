@@ -1,12 +1,9 @@
-
 // var fs = require('fs');
 import routes from './routes';
-
 import bodyParser from 'body-parser';
+import express from 'express';
+import * as errorHandler from './errorHandler';
 
-import http from 'http';
-
-var express = require('express');
 var app = express();
 
 const APP_PORT = '8080';
@@ -18,7 +15,12 @@ app.set('host', APP_HOST);
 app.locals.title = 'mobile-spring-api';
 app.locals.version = '1.0.0';
 
+app.use(bodyParser.json());
+
 app.use('/api', routes);
+
+app.use(errorHandler.bodyParser);
+app.use(errorHandler.notFoundApi);
 
 app.listen(app.get('port'), () => {
   console.log('info', `Server started at http://${app.get('host')}:${app.get('port')}`);
