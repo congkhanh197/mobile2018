@@ -10,10 +10,12 @@ export function notFoundApi(req, res) {
 }
 
 export function bodyParser(err, req, res, next) {
-  res.status(err.status).json({
+  console.log(err);
+  const status = err.status || 500
+  res.status(status).json({
     error: {
-      code: err.status,
-      message: err.message || HttpStatus.getStatusText(err.status)
+      code: status,
+      message: err.message || HttpStatus.getStatusText(status)
     }
   });
 }
