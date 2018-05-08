@@ -12,11 +12,11 @@ const APP_HOST = '149.28.26.145';
 app.set('port', APP_PORT);
 app.set('host', APP_HOST);
 
-app.locals.title = 'mobile-spring-api';
+app.locals.title = 'Mobile Spring 2018';
 app.locals.version = '1.0.0';
 
+app.use(express.static('public'))
 app.use(bodyParser.json());
-
 app.use('/api', routes);
 
 app.use(errorHandler.bodyParser);
