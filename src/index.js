@@ -12,11 +12,11 @@ const APP_HOST = '127.0.0.1';
 app.set('port', APP_PORT);
 app.set('host', APP_HOST);
 
-app.locals.title = 'Quang Tran Ex2';
+app.locals.title = 'Mobile Spring 2018';
 app.locals.version = '1.0.0';
 
+app.use(express.static('public'))
 app.use(bodyParser.json());
-
 app.use('/api', routes);
 
 app.use(errorHandler.bodyParser);
