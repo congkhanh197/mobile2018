@@ -22,9 +22,68 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/r_cage"/>
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/r_cage" />
+
+        <EditText
+            android:id="@+id/etComfirmPassWord"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:layout_alignEnd="@+id/etPassword"
+            android:layout_alignLeft="@+id/etPassword"
+            android:layout_alignRight="@+id/etPassword"
+            android:layout_alignStart="@+id/etPassword"
+            android:layout_below="@+id/etPassword"
+            android:layout_marginTop="18dp"
+            android:backgroundTint="@android:color/transparent"
+            android:ems="10"
+            android:hint="Comfirm Password"
+            android:inputType="textPassword"
+            android:paddingLeft="15dp"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="10sp" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:layout_alignEnd="@+id/etLastName"
+            android:layout_alignLeft="@+id/etPhoneNumber"
+            android:layout_alignRight="@+id/etLastName"
+            android:layout_alignStart="@+id/etPhoneNumber"
+            android:layout_below="@+id/etPhoneNumber"
+            android:layout_marginTop="65dp"
+            android:backgroundTint="@android:color/transparent"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingLeft="15dp"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="10sp" />
+
+        <EditText
+            android:id="@+id/etPhoneNumber"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:layout_alignLeft="@+id/etFirstName"
+            android:layout_alignStart="@+id/etFirstName"
+            android:layout_below="@+id/etFirstName"
+            android:layout_marginTop="19dp"
+            android:backgroundTint="@android:color/transparent"
+            android:ems="10"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:paddingLeft="15dp"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="10sp" />
 
         <ImageButton
+            android:id="@+id/bRegister"
             android:layout_width="95dp"
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
@@ -32,8 +91,41 @@
             android:layout_marginBottom="37dp"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
-            android:src="@drawable/r_btn_register"
-            android:id="@+id/imageButton" />
+            android:src="@drawable/r_btn_register" />
+
+        <EditText
+            android:id="@+id/etFirstName"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_alignBaseline="@+id/etLastName"
+            android:layout_alignBottom="@+id/etLastName"
+            android:layout_alignLeft="@+id/etUserID"
+            android:layout_alignStart="@+id/etUserID"
+            android:backgroundTint="@android:color/transparent"
+            android:ems="10"
+            android:hint="First Name"
+            android:inputType="textPersonName"
+            android:paddingLeft="15dp"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="10sp" />
+
+        <EditText
+            android:id="@+id/etLastName"
+            android:layout_width="75dp"
+            android:layout_height="30dp"
+            android:layout_alignEnd="@+id/etUserID"
+            android:layout_alignRight="@+id/etUserID"
+            android:layout_below="@+id/etUserID"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@android:color/transparent"
+            android:ems="10"
+            android:hint="Last Name"
+            android:inputType="textPersonName"
+            android:paddingLeft="15dp"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="10sp" />
 
         <EditText
             android:id="@+id/etUserID"
@@ -41,12 +133,12 @@
             android:layout_height="30dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="70dp"
-            android:layout_marginTop="69dp"
+            android:layout_marginTop="68dp"
             android:backgroundTint="@android:color/transparent"
             android:ems="10"
+            android:hint="User ID"
             android:inputType="textPersonName"
-            android:text="User ID"
+            android:paddingLeft="15dp"
             android:textColor="@android:color/background_light"
             android:textColorHint="@android:color/background_light"
             android:textSize="10sp" />

@@ -64,7 +64,7 @@
             android:src="@drawable/dl_btn_forgot_password" />
 
         <EditText
-            android:id="@+id/etUserID"
+            android:id="@+id/etFirstName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/etPassword"
@@ -83,8 +83,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/bCreateNewId"
-            android:layout_alignLeft="@+id/etUserID"
-            android:layout_alignStart="@+id/etUserID"
+            android:layout_alignLeft="@+id/etFirstName"
+            android:layout_alignStart="@+id/etFirstName"
             android:layout_marginBottom="20dp"
             android:backgroundTint="@android:color/transparent"
             android:ems="5"
