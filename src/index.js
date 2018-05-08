@@ -1,12 +1,8 @@
-
 // var fs = require('fs');
 import routes from './routes';
-
 import bodyParser from 'body-parser';
+import express from 'express';
 
-import http from 'http';
-
-var express = require('express');
 var app = express();
 
 const APP_PORT = '8080';
@@ -18,6 +14,7 @@ app.set('host', APP_HOST);
 app.locals.title = 'Quang Tran Ex2';
 app.locals.version = '1.0.0';
 
+app.use(bodyParser.json());
 app.use('/api', routes);
 
 app.listen(app.get('port'), app.get('host'), () => {
