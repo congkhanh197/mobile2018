@@ -50,11 +50,59 @@ CREATE TABLE IF NOT EXISTS m_pictures
         link text,
 		created_at timestamp not null default now(),
         updated_at timestamp not null default now(),
-		constraint picture_pkey primary key (id),
-        constraint picture_product_id_foreign  foreign key (product_id)
-					REFERENCES m_products (id) MATCH SIMPLE
-					ON UPDATE NO ACTION ON DELETE NO ACTION
+		constraint picture_pkey primary key (id)        
 	);    
 
+CREATE TABLE IF NOT EXISTS m_categories
+	(
+		id int(11) unsigned NOT NULL AUTO_INCREMENT,
+        picture text,
+		name character varying(100) NOT NULL,
+		created_at timestamp not null default now(),
+        updated_at timestamp not null default now(),
+		constraint category_pkey primary key (id)        
+	);    
+
+CREATE TABLE IF NOT EXISTS t_cartitems
+	(
+		user_id int(11) unsigned NOT NULL ,
+		quantity int(11) unsigned DEFAULT 1,
+		product_id int(11) unsigned NOT NULL,
+		created_at timestamp not null default now(),
+        updated_at timestamp not null default now(),
+		constraint cart_pkey primary key (user_id,product_id)        
+	);    
+
+CREATE TABLE IF NOT EXISTS m_orders
+	(
+		id int(11) unsigned NOT NULL AUTO_INCREMENT,
+		user_id int(11) unsigned NOT NULL ,
+		total int(11) unsigned DEFAULT 1,
+		status character varying(100) NOT NULL,
+		created_at timestamp not null default now(),
+        updated_at timestamp not null default now(),
+		constraint order_pkey primary key (id)        
+	);    
+
+CREATE TABLE IF NOT EXISTS m_orderitems
+	(
+		id int(11) unsigned NOT NULL AUTO_INCREMENT,
+		order_id int(11) unsigned NOT NULL ,
+		quantity int(11) unsigned DEFAULT 1,
+		product_id int(11) unsigned NOT NULL,
+		created_at timestamp not null default now(),
+        updated_at timestamp not null default now(),
+		constraint orderitem_pkey primary key (id)        
+	);    
+
+CREATE TABLE IF NOT EXISTS m_genres
+	(
+		id int(11) unsigned NOT NULL AUTO_INCREMENT,
+		cate_id int(11) unsigned NOT NULL ,
+		name character varying(100) NOT NULL,
+		created_at timestamp not null default now(),
+        updated_at timestamp not null default now(),
+		constraint orderitem_pkey primary key (id)        
+	);    
 
 
