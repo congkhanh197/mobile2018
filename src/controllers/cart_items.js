@@ -62,7 +62,7 @@ router.get('/:id', (req, res, next) => {
  */
 router.post('/', (req, res, next) => {
     cartItemService.createCartItem(req.body)
-        .then(data => {console.log(data); return res.json({ data });})
+        .then(data => res.json({ data }))
         .catch(err => next(err));
 });
 
@@ -102,7 +102,7 @@ router.put('/', (req, res, next) => {
  */
 /**
  * @swagger
- * /api/cart/:userid/:productid:
+ * /api/cart/{userid}/{productid}:
  *   delete:
  *     tags:
  *       - Cart Items

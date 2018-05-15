@@ -29,7 +29,7 @@ class CartItem extends bookshelf.Model {
   }
 
   get hasTimestamps() {
-    return true;
+    return false;
   }
 
   product() {
