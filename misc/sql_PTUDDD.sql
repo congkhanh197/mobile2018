@@ -29,10 +29,13 @@ CREATE TABLE IF NOT EXISTS m_products
 		name character varying(100) NOT NULL,
         info text,
         price int(11) unsigned NOT NULL,
+		sale int(11) unsigned,
+		type character varying(50),
+		category_id int(11) unsigned,
+		genre_id int(11) unsigned,
         creator_id int(11) unsigned,
 		created_at timestamp not null default now(),
-        updated_at timestamp not null default now(),
-        type character varying(50),
+        updated_at timestamp not null default now(),        
 		constraint product_pkey primary key (id)       
 	);
     

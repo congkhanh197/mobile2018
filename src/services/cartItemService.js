@@ -3,64 +3,49 @@ import CartItem from '../models/cartitem';
 /**
  * Get cart by userId.
  *
- * @return {Promise}
  */
 export function getCartItemByUserId(userId) {
-    return new CartItem({"userId":userId}).fetch()
-                .then(cartitems=>cartitems); 
-  }
+    return new CartItem().where({ user_id:userId })
+        .fetchAll({
+            withRelated: ['product']
+        })
+        .then(cartitems => cartitems); 
+}
   
-  
-
 /**
  * Create new cart item.
  *
- * @param  {Object}  cartItem
- * @return {Promise}
  */
 export function createCartItem(cartItem) {
     return new CartItem({ 
       userId:cartItem.userId,
-      quantity:cartItem.userId,
+      quantity:cartItem.quantity,
       productId:cartItem.productId
     }).save(null, { method: 'insert' }).then(cartItem => cartItem);
-  }
+}
   
-  /**
-   * Update a CartItem.
-   *
-   * @param  {Number|String}  id
-   * @param  {Object}         cartItem
-   * @return {Promise}
-   */
-  export function updateCartItem(id, newCartItem) {  
-      return new CartItem({id}).fetch()
-        .then(cartItem=> {
-            if (!cartItem) {
-                throw new Object({status:404,message:"Cart item not found"});
-            } else {
-                return new CartItem({ id }).save(newCartItem, { method: 'update' })
-                    .then(updatedCartItem => updatedCartItem);
-            }
-        })  
-    
-  }
+/**
+ * Update a CartItem.
+ *
+ */
+export function updateCartItem(newCartItem) {  
+    return new CartItem().where({
+        user_id:newCartItem.userId,
+        product_id:newCartItem.productId
+    }).save(newCartItem, { method: 'update' })
+        .then(newCartItem => newCartItem);    
+}
   
-  /**
-   * Delete a cart item.
-   *
-   * @param  {Number|String}  id
-   * @return {Promise}
-   */
-  export function deleteCartItem(id) {
-    return new CartItem({id}).fetch()
-    .then(cartItem=> {
-        if (!cartItem) {
-            throw new Object({status:404,message:"Cart item not found"});
-        } else {
-            return new CartItem({ id }).fetch().then(cartItem => cartItem.destroy());
-        }
-    })  
-  }
+/**
+ * Delete a cart item.
+ *
+ */
+export function deleteCartItem(userId, productId) {
+    return new CartItem().where({
+        user_id : userId,
+        product_id : productId
+    }).destroy()
+    .then(cartItem => cartItem);    
+}
   
   

@@ -11,7 +11,7 @@ export function notFoundApi(req, res) {
 
 export function bodyParser(err, req, res, next) {
   console.log(err);
-  const status = err.status || 500
+  const status = err.status || 400;
   res.status(status).json({
     error: {
       code: status,
