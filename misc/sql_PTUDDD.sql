@@ -20,8 +20,6 @@ CREATE TABLE IF NOT EXISTS m_users
 		constraint user_pkey primary key (id),
 		constraint user_email_unique unique (email),
         constraint user_username_unique unique (username)
-
-
 	);
 
 
@@ -31,15 +29,11 @@ CREATE TABLE IF NOT EXISTS m_products
 		name character varying(100) NOT NULL,
         info text,
         price int(11) unsigned NOT NULL,
-        creator_id int(11) unsigned NOT NULL,
+        creator_id int(11) unsigned,
 		created_at timestamp not null default now(),
         updated_at timestamp not null default now(),
         type character varying(50),
-		constraint product_pkey primary key (id),
-        constraint product_creatorid_foreign  foreign key (creator_id)
-					REFERENCES m_users (id) MATCH SIMPLE
-					ON UPDATE NO ACTION ON DELETE NO ACTION
-        
+		constraint product_pkey primary key (id)       
 	);
     
 
@@ -102,7 +96,7 @@ CREATE TABLE IF NOT EXISTS m_genres
 		name character varying(100) NOT NULL,
 		created_at timestamp not null default now(),
         updated_at timestamp not null default now(),
-		constraint orderitem_pkey primary key (id)        
+		constraint genres_pkey primary key (id)        
 	);    
 
 
