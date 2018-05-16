@@ -6,6 +6,7 @@ import Product from '../models/product';
  * @return {Promise}
  */
 export function getAllProducts() {
+    console.log(req.app.get('port'));
     return Product.fetchAll(); 
   }
   
