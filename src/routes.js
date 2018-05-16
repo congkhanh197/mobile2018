@@ -3,6 +3,10 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import path from 'path';
 import userController from './controllers/users';
 import loginController from './controllers/login';
+import productController from './controllers/products';
+import cartController from './controllers/cart_items';
+import categoryController from './controllers/categories';
+import searchController from './controllers/search';
 
 /**
  * Contains all API routes for the application.
@@ -45,5 +49,9 @@ router.get('/', (req, res) => {
 
 router.use('/users', userController);
 router.use('/login', loginController);
+router.use('/products', productController);
+router.use('/cart', cartController);
+router.use('/category', categoryController);
+router.use('/search', searchController);
 
 export default router;

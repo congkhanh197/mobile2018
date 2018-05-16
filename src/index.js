@@ -2,6 +2,7 @@
 import routes from './routes';
 import bodyParser from 'body-parser';
 import express from 'express';
+import path from 'path';
 import * as errorHandler from './errorHandler';
 
 var app = express();
@@ -15,7 +16,7 @@ app.set('host', APP_HOST);
 app.locals.title = 'Mobile Spring 2018';
 app.locals.version = '1.0.0';
 
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, '/../public')))
 app.use(bodyParser.json());
 app.use('/api', routes);
 
