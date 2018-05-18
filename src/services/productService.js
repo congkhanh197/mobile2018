@@ -27,6 +27,39 @@ export function getProductById(id) {
       }); 
   }
   
+/**
+ * Get product by category.
+ *
+ * @param  {Number|String}  categoryId
+ * @return {Promise}
+ */
+export function getProductByCategoryId(categoryId) {
+    return new Product().where({category_id:categoryId}).fetch()
+      .then(products => {
+        if (!products) {
+          throw new Object({status:404, message:"Product not found"});
+        }
+  
+        return products;
+      }); 
+  }
+
+/**
+ * Get product by genre.
+ *
+ * @param  {Number|String}  genreId
+ * @return {Promise}
+ */
+export function getProductByGenreId(genreId) {
+    return new Product().where({genre_id:genreId}).fetch()
+      .then(products => {
+        if (!products) {
+          throw new Object({status:404, message:"Product not found"});
+        }
+  
+        return products;
+      }); 
+  }
 
 /**
  * Create new product.
