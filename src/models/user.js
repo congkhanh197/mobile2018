@@ -28,15 +28,15 @@ const TABLE_NAME = 'm_users';
  *         type: string
  *       sex:
  *         type: integer
- *       first_login:
+ *       firstLogin:
  *         type: integer
  *       type:
  *         type: string
- *       third_party_id:
+ *       thirdPartyId:
  *         type: string
- *       created_at:
+ *       createdAt:
  *         type: string
- *       updated_at:
+ *       updatedAt:
  *         type: string
  */
 class User extends bookshelf.Model {

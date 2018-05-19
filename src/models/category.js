@@ -16,9 +16,9 @@ const TABLE_NAME = 'm_categories';
  *         type: string
  *       picture:
  *         type: string
- *       created_at:
+ *       createdAt:
  *         type: string
- *       updated_at:
+ *       updatedAt:
  *         type: string
  */
 class Category extends bookshelf.Model {
