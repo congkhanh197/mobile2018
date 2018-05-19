@@ -11,15 +11,15 @@ const TABLE_NAME = 't_cartitems';
  * definitions:
  *   CartItem:
  *     properties:
- *       user_id:
+ *       userId:
  *         type: integer
- *       product_id:
+ *       productId:
  *         type: integer
  *       quantity:
  *         type: integer       
- *       created_at:
+ *       createdAt:
  *         type: string
- *       updated_at:
+ *       updatedAt:
  *         type: string
  */
 class CartItem extends bookshelf.Model {
