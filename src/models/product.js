@@ -20,17 +20,17 @@ const TABLE_NAME = 'm_products';
  *         type: integer
  *       type:
  *         type: integer
- *       creator_id:
+ *       creatorId:
  *         type: integer
- *       category_id:
+ *       categoryId:
  *         type: integer
- *       genre_id:
+ *       genreId:
  *         type: integer
  *       sale:
  *         type: integer
- *       created_at:
+ *       createdAt:
  *         type: string
- *       updated_at:
+ *       updatedAt:
  *         type: string
  */
 class Product extends bookshelf.Model {

@@ -6,7 +6,7 @@ import Product from '../models/product';
  * @return {Promise}
  */
 export function getAllProducts() {
-    return new Product().fetchAll(); 
+    return Product.fetchAll(); 
   }
   
 /**
