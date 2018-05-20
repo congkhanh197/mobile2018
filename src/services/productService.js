@@ -26,6 +26,39 @@ export function getProductById(id) {
       }); 
   }
   
+/**
+ * Get product by category.
+ *
+ * @param  {Number|String}  categoryId
+ * @return {Promise}
+ */
+export function getProductByCategoryId(categoryId) {
+    return new Product().where({category_id:categoryId}).fetchAll()
+      .then(products => {
+        if (!products) {
+          throw new Object({status:404, message:"Product not found"});
+        }
+  
+        return products;
+      }); 
+  }
+
+/**
+ * Get product by genre.
+ *
+ * @param  {Number|String}  genreId
+ * @return {Promise}
+ */
+export function getProductByGenreId(genreId) {
+    return new Product().where({genre_id:genreId}).fetchAll()
+      .then(products => {
+        if (!products) {
+          throw new Object({status:404, message:"Product not found"});
+        }
+  
+        return products;
+      }); 
+  }
 
 /**
  * Create new product.
@@ -39,7 +72,10 @@ export function createProduct(product) {
       info: product.info,
       price: product.price,
       creatorId:product.creatorId,
-      type:product.type
+      type:product.type,
+      sale:product.sale,
+      category_id:product.categoryId,
+      genre_id:product.genreId
     }).save(null, { method: 'insert' }).then(product => product);
   }
   

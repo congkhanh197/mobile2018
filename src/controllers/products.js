@@ -57,7 +57,70 @@ router.get('/:id', (req, res, next) => {
       .then(data => res.json({ data }))
       .catch(err => next(err)); 
   });
+
+
+ /**
+ * GET /api/products/category/:categoryId
+ */
+/**
+ * @swagger
+ * /api/products/category/{categoryId}:
+ *   get:
+ *     tags:
+ *       - Products
+ *     description: Returns products by category id
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: categoryId
+ *         description: Category id
+ *         in: path
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       200:
+ *         description: List products
+ *         schema:
+ *           $ref: '#/definitions/Products'
+ */
+router.get('/category/:categoryId', (req, res, next) => {
+    productService.getProductByCategoryId(req.params.categoryId)
+      .then(data => res.json({ data }))
+      .catch(err => next(err)); 
+  });
   
+
+/**
+ * GET /api/products/genre/:genreId
+ */
+/**
+ * @swagger
+ * /api/products/genre/{genreId}:
+ *   get:
+ *     tags:
+ *       - Products
+ *     description: Returns products by genre id
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: genreId
+ *         description: Genre id
+ *         in: path
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       200:
+ *         description: List products
+ *         schema:
+ *           $ref: '#/definitions/Products'
+ */
+router.get('/genre/:genreId', (req, res, next) => {
+    productService.getProductByGenreId(req.params.genreId)
+      .then(data => res.json({ data }))
+      .catch(err => next(err)); 
+  });
+
+
 /**
  * POST /api/products
  */

@@ -7,6 +7,10 @@ import productController from './controllers/products';
 import cartController from './controllers/cart_items';
 import categoryController from './controllers/categories';
 import searchController from './controllers/search';
+import genreController from './controllers/genre';
+import pictureController from './controllers/picture';
+
+
 
 /**
  * Contains all API routes for the application.
@@ -53,5 +57,8 @@ router.use('/products', productController);
 router.use('/cart', cartController);
 router.use('/category', categoryController);
 router.use('/search', searchController);
+router.use('/genre',genreController);
+router.use('/picture',pictureController);
+
 
 export default router;
