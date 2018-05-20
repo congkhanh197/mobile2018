@@ -6,8 +6,7 @@ import Product from '../models/product';
  * @return {Promise}
  */
 export function getAllProducts() {
-    console.log(req.app.get('port'));
-    return Product.fetchAll(); 
+    return new Product().fetchAll(); 
   }
   
 /**
@@ -34,7 +33,7 @@ export function getProductById(id) {
  * @return {Promise}
  */
 export function getProductByCategoryId(categoryId) {
-    return new Product().where({category_id:categoryId}).fetch()
+    return new Product().where({category_id:categoryId}).fetchAll()
       .then(products => {
         if (!products) {
           throw new Object({status:404, message:"Product not found"});
@@ -51,7 +50,7 @@ export function getProductByCategoryId(categoryId) {
  * @return {Promise}
  */
 export function getProductByGenreId(genreId) {
-    return new Product().where({genre_id:genreId}).fetch()
+    return new Product().where({genre_id:genreId}).fetchAll()
       .then(products => {
         if (!products) {
           throw new Object({status:404, message:"Product not found"});
@@ -73,7 +72,10 @@ export function createProduct(product) {
       info: product.info,
       price: product.price,
       creatorId:product.creatorId,
-      type:product.type
+      type:product.type,
+      sale:product.sale,
+      category_id:product.categoryId,
+      genre_id:product.genreId
     }).save(null, { method: 'insert' }).then(product => product);
   }
   

@@ -60,11 +60,11 @@ router.get('/:id', (req, res, next) => {
 
 
  /**
- * GET /api/products/:categoryId
+ * GET /api/products/category/:categoryId
  */
 /**
  * @swagger
- * /api/products/{categoryId}:
+ * /api/products/category/{categoryId}:
  *   get:
  *     tags:
  *       - Products
@@ -83,7 +83,7 @@ router.get('/:id', (req, res, next) => {
  *         schema:
  *           $ref: '#/definitions/Products'
  */
-router.get('/:categoryId', (req, res, next) => {
+router.get('/category/:categoryId', (req, res, next) => {
     productService.getProductByCategoryId(req.params.categoryId)
       .then(data => res.json({ data }))
       .catch(err => next(err)); 
@@ -91,11 +91,11 @@ router.get('/:categoryId', (req, res, next) => {
   
 
 /**
- * GET /api/products/:genreId
+ * GET /api/products/genre/:genreId
  */
 /**
  * @swagger
- * /api/products/{genreId}:
+ * /api/products/genre/{genreId}:
  *   get:
  *     tags:
  *       - Products
@@ -114,7 +114,7 @@ router.get('/:categoryId', (req, res, next) => {
  *         schema:
  *           $ref: '#/definitions/Products'
  */
-router.get('/:genreId', (req, res, next) => {
+router.get('/genre/:genreId', (req, res, next) => {
     productService.getProductByGenreId(req.params.genreId)
       .then(data => res.json({ data }))
       .catch(err => next(err)); 

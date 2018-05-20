@@ -16,7 +16,7 @@ export function getAllGenre() {
  * @return {Promise}
  */
 export function getGenresByCategoryId(categoryId) {
-    return new Genre().where({cate_id:categoryId}).fetch()
+    return new Genre().where({cate_id:categoryId}).fetchAll()
       .then(genres => {
         if (!genres) {
           throw new Object({status:404, message:"Genres not found"});

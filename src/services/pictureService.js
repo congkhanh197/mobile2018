@@ -7,7 +7,7 @@ import Picture from '../models/picture';
  * @return {Promise}
  */
 export function getPictureByProductId(productId) {
-    return new Picture().where({product_id:productId}).fetch()
+    return new Picture().where({product_id:productId}).fetchAll()
       .then(pictures => {
         if (!pictures) {
           throw new Object({status:404, message:"Picture not found"});
