@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS m_products
 		id int(11) unsigned NOT NULL AUTO_INCREMENT,
 		name character varying(100) NOT NULL,
         info text,
+		description text,
         price int(11) unsigned NOT NULL,
 		sale int(11) unsigned,
 		type character varying(50),

@@ -5,7 +5,7 @@ import Category from '../models/category';
  *
  */
 export function getAllCategories() {
-    return new Category().fetchAll()
+    return new Category().fetchAll({withRelated:['genres']})
         .then(data => data); 
 }
 

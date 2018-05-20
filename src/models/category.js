@@ -1,4 +1,5 @@
 import bookshelf from '../database_config';
+import Genre from './genre';
 
 const TABLE_NAME = 'm_categories';
 
@@ -29,6 +30,10 @@ class Category extends bookshelf.Model {
 
   get hasTimestamps() {
     return false;
+  }
+
+  genres() {
+    return this.hasMany(Genre, "cate_id");
   }
 
 }
