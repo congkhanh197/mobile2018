@@ -41,4 +41,4 @@ class OrderItem extends bookshelf.Model {
 
 }
 
-export default Category;
+export default OrderItem;

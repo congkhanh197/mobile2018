@@ -1,18 +1,23 @@
 import Order from '../models/order';
+import * as cartItemService from './cartItemService';
+import * as orderItemService from './orderItemService';
 
 /**
  * Get orders by user id
  *
  */
 export function getOrdersByUserId(userId) {
-    return new Order().where({user_id:userId}).fetchAll()
-      .then(orders => {
-        if (!orders) {
-          throw new Object({status:404, message:"Order not found"});
-        }
-  
-        return orders;
-      }); 
+    return new Order().where({
+      user_id : userId
+    })
+    .fetchAll({ withRelated : ["items"] })
+    .then(orders => {
+      if (!orders) {
+        throw new Object({status:404, message:"Order not found"});
+      }
+
+      return orders;
+    }); 
 }
 
 /**
@@ -42,8 +47,19 @@ export function createOrder(order) {
         user_id : order.userId,
         total: order.total,
         status: order.status
-    }).save(null, { method: 'insert' })
-        .then(data => data);
+      }).save(null, { method: 'insert' })
+        .then(data => {
+          cartItemService.getCartItemByUserId(order.userId)
+            .then(cartItems => {
+              cartItems = cartItems.toJSON();
+              cartItems.forEach(item => {
+                item.orderId = data.id;
+                orderItemService.createOrderItem(item);
+                cartItemService.deleteCartItem(item.userId, item.productId);
+              });
+            });
+          return data;
+        });
 }
   
 /**
