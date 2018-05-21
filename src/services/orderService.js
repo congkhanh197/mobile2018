@@ -46,7 +46,10 @@ export function createOrder(order) {
     return new Order({ 
         user_id : order.userId,
         total: order.total,
-        status: order.status
+        status: order.status,
+        phone : order.phone,
+        address: order.address,
+        email: order.email
       }).save(null, { method: 'insert' })
         .then(data => {
           cartItemService.getCartItemByUserId(order.userId)
