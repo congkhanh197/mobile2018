@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    tools:context="com.example.thoithanh.shoppingappp.DidClickItem">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/dc_iMainImg"
+            android:layout_width="wrap_content"
+            android:layout_height="170dp"
+            android:background="@drawable/dc_drap_main_item" />
+        <EditText
+            android:id="@+id/dc_etSearch"
+            android:layout_width="208dp"
+            android:layout_height="27dp"
+            android:imeOptions="actionSearch"
+            android:singleLine="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/dlg_search_area"
+            android:hint="Discover you items"
+            android:textAlignment="center"
+            android:layout_marginTop="15dp"/>
+        <ImageButton
+            android:id="@+id/dc_bSearch"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/dlg_search_icon"
+            android:layout_toRightOf="@id/dc_etSearch"
+            android:layout_marginLeft="-25dp"
+            android:layout_marginTop="21dp"
+            />
+        <ImageButton
+            android:id="@+id/dc_bCart"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/dlg_card_icon"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="8dp"/>
+        <TextView
+            android:id="@+id/dc_tvNumberItemInCart"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@android:drawable/ic_notification_overlay"
+            android:text="0"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textSize="12sp"
+            />
+        <ImageButton
+            android:id="@+id/dc_bMenu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/dlg_menu_icon"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="13dp"
+            />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/dc_cage"
+            android:layout_width="235dp"
+            android:layout_height="104dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="126dp"
+            android:background="@drawable/dc_cage">
+
+            <TextView
+                android:id="@+id/dc_tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Omega 50 Watch"
+                android:textColor="#444444"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/dc_tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="$1299.99"
+                android:textColor="#3dffd1"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <ImageButton
+            android:id="@+id/dc_bAdd"
+            android:layout_width="141dp"
+            android:layout_height="29dp"
+            android:layout_below="@+id/dc_cage"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/dc_btn_add" />
+
+        <TextView
+            android:id="@+id/dc_tvImages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dc_bAdd"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Images"
+            android:textColor="#444444"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dc_rvImages"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@+id/dc_tvImages"/>
+        <TextView
+            android:id="@+id/dc_tvDescriptionContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dc_rvImages"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Description"
+            android:textColor="#444444"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/dc_tvDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dc_tvDescriptionContent"
+            android:text="You know what's sucky about regular flashlights? They only come in two colors: white or that yellowish-white that reminds us of the teeth of an avid coffee drinker. What fun is that kind of flashlight? We'll answer that: NO FUN AT ALL. You know what is fun? Using the Multi-Color LED Flashlight to cast a sickly green glow over your face while telling a zombie story around a campfire. No campfire? Make a fake one with the orange light!"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            />
+        <TextView
+            android:id="@+id/dc_tvInformationContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dc_tvDescription"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Information"
+            android:textColor="#444444"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/dc_tvInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dc_tvInformationContent"
+            android:text="You know what's sucky about regular flashlights? They only come in two colors: white or that yellowish-white that reminds us of the teeth of an avid coffee drinker. What fun is that kind of flashlight? We'll answer that: NO FUN AT ALL. You know what is fun? Using the Multi-Color LED Flashlight to cast a sickly green glow over your face while telling a zombie story around a campfire. No campfire? Make a fake one with the orange light!"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            />
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

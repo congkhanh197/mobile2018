@@ -1,19 +1,25 @@
 package com.example.thoithanh.shoppingappp;
 
 import android.content.Intent;
+import android.preference.PreferenceActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,43 +46,46 @@ public class MainActivity extends AppCompatActivity {
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final String userId = etUserID.getText().toString();
                 final String password = etPassword.getText().toString();
 
-                Response.Listener<String> responeListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonRespond = new JSONObject(response);
-                            boolean success = jsonRespond.getBoolean("success");
-                            if(success){
-                                //json return {success = true,userID,...}
-                                String name = jsonRespond.getString("userID");
-
-                                Intent intent = new Intent(MainActivity.this,DidLoginActivity.class);
-                                intent.putExtra("name", name);
-
-                                MainActivity.this.startActivity(intent);
-
-                            }
-                            else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                                builder.setMessage("Login Failed!")
-                                        .setNegativeButton("Retry",null)
-                                        .create()
-                                        .show();
-                            }
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put("username", userId);
+                        jsonObject.put("password", password);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                };
 
-                LoginRequest loginRequest = new LoginRequest(userId,password,responeListener);
-                RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                queue.add(loginRequest);
+
+                    Response.Listener<JSONObject> responeListener = new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                                //String name = jsonRespond.getString("userID");
+                            try {
+                                int userId = response.getJSONObject("data").getInt("id");
+                                Intent intent = new Intent(MainActivity.this, DidLoginActivity.class);
+                                intent.putExtra("userId", userId);
+                                MainActivity.this.startActivity(intent);
+                                finish();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                        }
+                    };
+
+                    LoginRequest loginRequest = null;
+                    try {
+                        loginRequest = new LoginRequest(jsonObject, responeListener);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+                    queue.add(loginRequest);
+
             }
         });
     }

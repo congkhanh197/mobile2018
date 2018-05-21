@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="330dp"
+    android:layout_height="350dp"
+    android:background="@android:color/background_light">
+
+
+    <ImageView
+        android:id="@+id/dcc_iItem"
+        android:layout_width="230dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/drap_img"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/dcc_tvItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="18dp"
+        android:text="Fourou Erlis Tenorila"
+        android:textColor="#444444"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dcc_iItem" />
+
+    <TextView
+        android:id="@+id/dcc_tvItemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:layout_marginStart="100dp"
+        android:text="$1299.99"
+        android:textColor="#3dffd1"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUnitPrice" />
+
+    <EditText
+        android:id="@+id/dcc_etQuantity"
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="58dp"
+        android:layout_marginStart="100dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="1"
+        android:textAlignment="center"
+        android:textColor="#444444"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvUnitPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
+        android:text="Unit Price"
+        android:textColor="#AAAAAA"
+        android:textSize="9sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dcc_tvItemName" />
+
+    <TextView
+        android:id="@+id/tvQuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
+        android:text="Quantity"
+        android:textColor="#AAAAAA"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toTopOf="@+id/dcc_etQuantity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dcc_tvItemPrice" />
+
+    <ImageButton
+        android:id="@+id/dcc_bMinus"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="66dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dcc_etQuantity"
+        app:srcCompat="@drawable/btn_minus" />
+
+    <ImageButton
+        android:id="@+id/dcc_bPlus"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="66dp"
+        android:layout_marginStart="16dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dcc_etQuantity"
+        app:srcCompat="@drawable/btn_plus" />
+
+    <ImageButton
+        android:id="@+id/dcc_bDelete"
+        android:layout_width="20dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="100dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dcc_etQuantity"
+        app:srcCompat="@drawable/btn_delete" />
+
+</android.support.constraint.ConstraintLayout>

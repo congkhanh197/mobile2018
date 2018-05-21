@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dl_background"
+    tools:context="com.example.thoithanh.shoppingappp.DidClickSearchActivity">
+
+    <EditText
+        android:id="@+id/dcs_etSeach"
+        android:layout_width="208dp"
+        android:layout_height="27dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/dlg_search_area"
+        android:hint="Discover you items"
+
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/dcs_bSearch"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginEnd="10dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/dlg_search_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/dcs_etSeach"
+        app:layout_constraintEnd_toEndOf="@+id/dcs_etSeach"
+        app:layout_constraintTop_toTopOf="@+id/dcs_etSeach" />
+
+    <ImageButton
+        android:id="@+id/dcs_bCart"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dcs_etSeach"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dlg_card_icon" />
+
+    <ImageButton
+        android:id="@+id/dcs_bMenu"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/dcs_etSeach"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dlg_menu_icon" />
+    <TextView
+        android:id="@+id/dcs_tvNumberItemInCart"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="25dp"
+        android:background="@android:drawable/ic_notification_overlay"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dcs_bCart"
+        app:layout_constraintStart_toStartOf="@+id/dcs_bCart" />
+</android.support.constraint.ConstraintLayout>

@@ -73,9 +73,10 @@
             android:layout_marginBottom="27dp"
             android:backgroundTint="@android:color/transparent"
             android:ems="5"
+            android:hint="User ID"
             android:inputType="textEmailAddress"
-            android:text="User ID"
-            android:textColor="#fff"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="@android:color/background_light"
             android:textSize="10sp" />
 
         <EditText

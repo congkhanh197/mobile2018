@@ -1,9 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_light"
     tools:context="com.example.thoithanh.shoppingappp.DidLoginActivity">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+        <ImageView
+            android:id="@+id/dlg_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/dlg_top_bar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="30dp" />
+    <EditText
+        android:id="@+id/etSeach"
+        android:layout_width="208dp"
+        android:layout_height="27dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/dlg_search_area"
+        android:hint="Discover you items"
+        android:textAlignment="center"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="@+id/dlg_top_bar"
+        app:layout_constraintEnd_toEndOf="@+id/dlg_top_bar"
+        app:layout_constraintStart_toStartOf="@+id/dlg_top_bar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/bSearch"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/dlg_search_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/etSeach"
+            app:layout_constraintEnd_toEndOf="@+id/etSeach"
+            app:layout_constraintTop_toTopOf="@+id/etSeach" />
+
+        <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/most_popular"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvCats" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvCats"
+            android:layout_width="match_parent"
+            android:layout_height="109dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dlg_top_bar"
+            tools:ignore="MissingConstraints">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvPopItems"
+        android:layout_width="match_parent"
+        android:layout_height="145dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView2"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Recommend Items"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvPopItems" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvRecommendItems"
+            android:layout_width="368dp"
+            android:layout_height="145dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <ImageButton
+            android:id="@+id/bCart"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="@+id/dlg_top_bar"
+            app:layout_constraintEnd_toEndOf="@+id/dlg_top_bar"
+            app:layout_constraintTop_toTopOf="@+id/dlg_top_bar"
+            app:srcCompat="@drawable/dlg_card_icon" />
+
+        <ImageButton
+            android:id="@+id/bMenu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="@+id/dlg_top_bar"
+            app:layout_constraintStart_toStartOf="@+id/dlg_top_bar"
+            app:layout_constraintTop_toTopOf="@+id/dlg_top_bar"
+            app:srcCompat="@drawable/dlg_menu_icon" />
+
+        <TextView
+            android:id="@+id/tvNumberItemInCart"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="25dp"
+            android:background="@android:drawable/ic_notification_overlay"
+            android:text="0"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/bCart"
+            app:layout_constraintStart_toStartOf="@+id/bCart" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

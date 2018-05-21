@@ -8,8 +8,8 @@
     tools:context="com.example.thoithanh.shoppingappp.RegisterActivity">
 
     <RelativeLayout
-        android:layout_width="206dp"
-        android:layout_height="440dp"
+        android:layout_width="295dp"
+        android:layout_height="577dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -29,14 +29,11 @@
 
         <EditText
             android:id="@+id/etComfirmPassWord"
-            android:layout_width="110dp"
-            android:layout_height="30dp"
-            android:layout_alignEnd="@+id/etPassword"
-            android:layout_alignLeft="@+id/etPassword"
-            android:layout_alignRight="@+id/etPassword"
-            android:layout_alignStart="@+id/etPassword"
+            android:layout_width="180dp"
+            android:layout_height="35dp"
             android:layout_below="@+id/etPassword"
-            android:layout_marginTop="18dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
             android:backgroundTint="@android:color/transparent"
             android:ems="10"
             android:hint="Comfirm Password"
@@ -47,15 +44,29 @@
             android:textSize="10sp" />
 
         <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="110dp"
-            android:layout_height="30dp"
+            android:id="@+id/etEmail"
+            android:layout_width="180dp"
+            android:layout_height="35dp"
             android:layout_alignEnd="@+id/etLastName"
-            android:layout_alignLeft="@+id/etPhoneNumber"
             android:layout_alignRight="@+id/etLastName"
+            android:layout_below="@+id/etComfirmPassWord"
+            android:layout_marginTop="33dp"
+            android:backgroundTint="@android:color/transparent"
+            android:ems="10"
+            android:hint="E-mail Address"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="15dp"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="10sp" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="180dp"
+            android:layout_height="35dp"
+            android:layout_alignLeft="@+id/etPhoneNumber"
             android:layout_alignStart="@+id/etPhoneNumber"
-            android:layout_below="@+id/etPhoneNumber"
-            android:layout_marginTop="65dp"
+            android:layout_centerVertical="true"
             android:backgroundTint="@android:color/transparent"
             android:ems="10"
             android:hint="Password"
@@ -68,11 +79,11 @@
         <EditText
             android:id="@+id/etPhoneNumber"
             android:layout_width="110dp"
-            android:layout_height="30dp"
+            android:layout_height="35dp"
             android:layout_alignLeft="@+id/etFirstName"
             android:layout_alignStart="@+id/etFirstName"
             android:layout_below="@+id/etFirstName"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="28dp"
             android:backgroundTint="@android:color/transparent"
             android:ems="10"
             android:hint="Phone Number"
@@ -88,7 +99,7 @@
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="37dp"
+            android:layout_marginBottom="36dp"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
             android:src="@drawable/r_btn_register" />
@@ -96,8 +107,7 @@
         <EditText
             android:id="@+id/etFirstName"
             android:layout_width="80dp"
-            android:layout_height="30dp"
-            android:layout_alignBaseline="@+id/etLastName"
+            android:layout_height="35dp"
             android:layout_alignBottom="@+id/etLastName"
             android:layout_alignLeft="@+id/etUserID"
             android:layout_alignStart="@+id/etUserID"
@@ -113,11 +123,11 @@
         <EditText
             android:id="@+id/etLastName"
             android:layout_width="75dp"
-            android:layout_height="30dp"
-            android:layout_alignEnd="@+id/etUserID"
-            android:layout_alignRight="@+id/etUserID"
+            android:layout_height="35dp"
             android:layout_below="@+id/etUserID"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="26dp"
+            android:layout_toEndOf="@+id/etPhoneNumber"
+            android:layout_toRightOf="@+id/etPhoneNumber"
             android:backgroundTint="@android:color/transparent"
             android:ems="10"
             android:hint="Last Name"
@@ -129,11 +139,11 @@
 
         <EditText
             android:id="@+id/etUserID"
-            android:layout_width="167dp"
-            android:layout_height="30dp"
+            android:layout_width="180dp"
+            android:layout_height="35dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="91dp"
             android:backgroundTint="@android:color/transparent"
             android:ems="10"
             android:hint="User ID"
@@ -143,8 +153,17 @@
             android:textColorHint="@android:color/background_light"
             android:textSize="10sp" />
 
-    </RelativeLayout>
+        <Spinner
+            android:id="@+id/spSex"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:layout_alignTop="@+id/etPhoneNumber"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@+id/bRegister"
+            android:layout_toRightOf="@+id/bRegister" />
 
+    </RelativeLayout>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="190dp"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivBackground"
+        android:layout_width="165dp"
+        android:layout_height="105dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dlg_cat_clothing" />
+
+    <TextView
+        android:id="@+id/tvCat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="Category"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/ivBackground"
+        app:layout_constraintTop_toTopOf="@+id/ivBackground" />
+
+    <TextView
+        android:id="@+id/tvComponents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:text="Component, component,.."
+        android:textColor="@android:color/background_light"
+        app:layout_constraintStart_toStartOf="@+id/ivBackground"
+        app:layout_constraintTop_toBottomOf="@+id/tvCat" />
+
+    <TextView
+        android:id="@+id/tvResultNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="1dp"
+        android:text="Results"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintStart_toStartOf="@+id/ivBackground"
+        app:layout_constraintTop_toBottomOf="@+id/tvComponents" />
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    tools:context="com.example.thoithanh.shoppingappp.DidClickPayActivity">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:text="Total Price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dcp_tvTotalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="21dp"
+        android:text="$0.00"
+        android:textColor="#444444"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv1" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="22dp"
+        android:layout_marginTop="46dp"
+        android:text="Phone Number"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/dcp_etPhoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/dcp_tvTotalPrice" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="22dp"
+        android:layout_marginTop="36dp"
+        android:text="E-mail address"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/dcp_etEmail"
+        app:layout_constraintTop_toBottomOf="@+id/dcp_etPhoneNumber" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="22dp"
+        android:layout_marginTop="36dp"
+        android:text="Address"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/dcp_etAddress"
+        app:layout_constraintTop_toBottomOf="@+id/dcp_etEmail" />
+
+    <EditText
+        android:id="@+id/dcp_etPhoneNumber"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="22dp"
+        android:layout_marginTop="35dp"
+        android:ems="10"
+        android:hint="your phone number"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dcp_tvTotalPrice" />
+
+    <EditText
+        android:id="@+id/dcp_etEmail"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="22dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="your e-mail address"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dcp_etPhoneNumber" />
+
+    <EditText
+        android:id="@+id/dcp_etAddress"
+        android:layout_width="250dp"
+        android:layout_height="107dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="your address"
+        android:inputType="text|textMultiLine|textImeMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dcp_etEmail" />
+
+    <ImageButton
+        android:id="@+id/dcp_bPay"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/dcp_bDecline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dcp_etAddress"
+        app:srcCompat="@drawable/dcp_btn_pay" />
+
+    <ImageButton
+        android:id="@+id/dcp_bDecline"
+        android:layout_width="224dp"
+        android:layout_height="69dp"
+        android:layout_marginBottom="32dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/dcp_btn_decline" />
+
+    <ImageButton
+        android:id="@+id/dcp_bHome"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/btn_home" />
+</android.support.constraint.ConstraintLayout>
