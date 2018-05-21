@@ -94,10 +94,11 @@ public class DidClickItem extends AppCompatActivity {
             }
         });
         //
-        dc_etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+        dc_etSearch.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     String title = dc_etSearch.getText().toString();
                     Intent intent = new Intent(DidClickItem.this,DidSearch.class);
                     intent.putExtra("userId",userId);
@@ -108,6 +109,8 @@ public class DidClickItem extends AppCompatActivity {
                 return false;
             }
         });
+
+                
         //
         setTvNumberItemInCart(dc_tvNumberItemInCart,userId);
         initRequest();
