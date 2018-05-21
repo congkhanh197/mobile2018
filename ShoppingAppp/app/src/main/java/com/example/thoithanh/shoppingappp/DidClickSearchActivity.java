@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class DidClickSearchActivity extends AppCompatActivity {
     EditText etSearch;
@@ -33,23 +35,19 @@ public class DidClickSearchActivity extends AppCompatActivity {
                 DidClickSearchActivity.this.startActivity(intent);
             }
         });
-        etSearch.setOnKeyListener(new View.OnKeyListener() {
+        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)){
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     String title = etSearch.getText().toString();
                     Intent intent = new Intent(DidClickSearchActivity.this,DidSearch.class);
                     intent.putExtra("userId",userId);
                     intent.putExtra("title", title);
                     DidClickSearchActivity.this.startActivity(intent);
-
-
                     return true;
-
                 }
                 return false;
             }
-
         });
     }
 }

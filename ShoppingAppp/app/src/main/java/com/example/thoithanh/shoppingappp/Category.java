@@ -5,14 +5,20 @@ package com.example.thoithanh.shoppingappp;
  */
 
 public class Category {
+    public int Id;
     public String Name;
     public String Components;
     public String ResultNumber;
 
-    public Category(String name, String components, String resultNumber) {
+    public Category(int id, String name, String components, String resultNumber) {
+        Id = id;
         Name = name;
         Components = components;
         ResultNumber = resultNumber;
+    }
+
+    public int getId() {
+        return Id;
     }
 
     public String getName() {
