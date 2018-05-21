@@ -126,11 +126,13 @@ public class DidLoginActivity extends AppCompatActivity {
 
         //arrayCats get from JSON response later
         arrayCats = new ArrayList<Category>();
-        arrayCats.add(new Category(1,"Books","Fiction, Science, Business,...","1234"));
-        arrayCats.add(new Category(2,"Electronics","Computer, Camera,...","1234"));
-        arrayCats.add(new Category(3,"Household","Fiction, Science, Business,...","1234"));
-        arrayCats.add(new Category(4,"Clothes","Fiction, Science, Business,...","1234"));
-        arrayCats.add(new Category(5,"Comestic","Fiction, Science, Business,...","1234"));
+        arrayCats.add(new Category(1,"Books","Fiction, Science, Business,...",""));
+        arrayCats.add(new Category(2,"Electronics","Computer, Camera,...",""));
+        arrayCats.add(new Category(3,"Clothes","Shirt, Pants, Shoes,...",""));
+        arrayCats.add(new Category(4,"Comestic","Foundation, Mascara,...",""));
+        arrayCats.add(new Category(4,"Handmade","Brass, Pen...",""));
+        arrayCats.add(new Category(6,"Household","Air conditioner, Bed,...",""));
+
 
         CategoryAdapter categoryAdapter = new CategoryAdapter(userId,arrayCats,getApplicationContext());
         recyclerView.setAdapter(categoryAdapter);
