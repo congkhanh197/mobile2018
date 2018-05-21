@@ -7,9 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -28,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText etFirstName = (EditText) findViewById(R.id.etFirstName);
         final EditText etLastName = (EditText) findViewById(R.id.etLastName);
         final EditText etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
+        final EditText etEmail = (EditText) findViewById(R.id.etEmail);
 
         final ImageButton bRegister = (ImageButton) findViewById(R.id.bRegister);
 
@@ -40,36 +45,43 @@ public class RegisterActivity extends AppCompatActivity {
                 final String password = etPassword.getText().toString();
                 final String comfirmPassword = etComfirmPassword.getText().toString();
                 final String phoneNumber = etPhoneNumber.getText().toString();
+                final String email = etEmail.getText().toString();
 
-                Response.Listener<String> responeListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonRespone = new JSONObject(response);
-                            boolean success = jsonRespone.getBoolean("success");
-                            if(success){
-                                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                                RegisterActivity.this.startActivity(intent);
-                            }
-                            else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                                builder.setMessage("Register Failed!")
-                                        .setNegativeButton("Retry",null)
-                                        .create()
-                                        .show();
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
+                if (password.equals(comfirmPassword)) {
+                    RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
+                    String URL = "http://149.28.26.145:8080/api/login/signup";
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put("username", userId);
+                        jsonObject.put("password", password);
+                        jsonObject.put("fullname", firstName + " " + lastName);
+                        jsonObject.put("email", email);
+                        jsonObject.put("phone", phoneNumber);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                };
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL, jsonObject, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Toast.makeText(RegisterActivity.this,"Register successed!",Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                            RegisterActivity.this.startActivity(intent);
+                            finish();
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(RegisterActivity.this,error.toString() + "\nPlease try again!",Toast.LENGTH_LONG).show();
+
+                        }
+                    });
 
 
-                RegisterRequest registerRequest = new RegisterRequest(userId,firstName,lastName,password,comfirmPassword,phoneNumber,responeListener);
-                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
-                queue.add(registerRequest);
+                    queue.add(jsonObjectRequest);
+                }
+                else {
+                    Toast.makeText(RegisterActivity.this,"Password does not match",Toast.LENGTH_LONG).show();
+                }
 
             }
         });

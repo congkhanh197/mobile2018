@@ -78,7 +78,7 @@
 
         <EditText
             android:id="@+id/etPhoneNumber"
-            android:layout_width="110dp"
+            android:layout_width="180dp"
             android:layout_height="35dp"
             android:layout_alignLeft="@+id/etFirstName"
             android:layout_alignStart="@+id/etFirstName"
@@ -124,10 +124,10 @@
             android:id="@+id/etLastName"
             android:layout_width="75dp"
             android:layout_height="35dp"
+            android:layout_alignEnd="@+id/etUserID"
+            android:layout_alignRight="@+id/etUserID"
             android:layout_below="@+id/etUserID"
-            android:layout_marginTop="26dp"
-            android:layout_toEndOf="@+id/etPhoneNumber"
-            android:layout_toRightOf="@+id/etPhoneNumber"
+            android:layout_marginTop="25dp"
             android:backgroundTint="@android:color/transparent"
             android:ems="10"
             android:hint="Last Name"
@@ -146,22 +146,12 @@
             android:layout_marginTop="91dp"
             android:backgroundTint="@android:color/transparent"
             android:ems="10"
-            android:hint="User ID"
+            android:hint="Username"
             android:inputType="textPersonName"
             android:paddingLeft="15dp"
             android:textColor="@android:color/background_light"
             android:textColorHint="@android:color/background_light"
             android:textSize="10sp" />
-
-        <Spinner
-            android:id="@+id/spSex"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
-            android:layout_alignTop="@+id/etPhoneNumber"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@+id/bRegister"
-            android:layout_toRightOf="@+id/bRegister" />
 
     </RelativeLayout>
 
