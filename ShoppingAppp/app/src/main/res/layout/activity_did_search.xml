@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    tools:context="com.example.thoithanh.shoppingappp.DidSearch">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvDsItems"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ds_tvTitle"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <ImageView
+        android:id="@+id/ds_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/dlg_top_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <EditText
+        android:id="@+id/ds_etSeach"
+        android:layout_width="208dp"
+        android:layout_height="27dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/dlg_search_area"
+        android:hint="Discover you items"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/ds_top_bar"
+        app:layout_constraintEnd_toEndOf="@+id/ds_top_bar"
+        app:layout_constraintStart_toStartOf="@+id/ds_top_bar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ds_bSearch"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginEnd="10dp"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/dlg_search_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/ds_etSeach"
+        app:layout_constraintEnd_toEndOf="@+id/ds_etSeach"
+        app:layout_constraintTop_toTopOf="@+id/ds_etSeach" />
+
+    <ImageButton
+        android:id="@+id/ds_bCart"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/ds_top_bar"
+        app:layout_constraintEnd_toEndOf="@+id/ds_top_bar"
+        app:layout_constraintTop_toTopOf="@+id/ds_top_bar"
+        app:srcCompat="@drawable/dlg_card_icon" />
+
+    <ImageButton
+        android:id="@+id/ds_bMenu"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/ds_top_bar"
+        app:layout_constraintStart_toStartOf="@+id/ds_top_bar"
+        app:layout_constraintTop_toTopOf="@+id/ds_top_bar"
+        app:srcCompat="@drawable/dlg_menu_icon" />
+    <TextView
+        android:id="@+id/ds_tvNumberItemInCart"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="25dp"
+        android:background="@android:drawable/ic_notification_overlay"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ds_bCart"
+        app:layout_constraintStart_toStartOf="@+id/ds_bCart" />
+
+    <TextView
+        android:id="@+id/ds_tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="Title"
+        android:textColor="#444444"
+        android:textSize="21sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ds_top_bar" />
+</android.support.constraint.ConstraintLayout>
