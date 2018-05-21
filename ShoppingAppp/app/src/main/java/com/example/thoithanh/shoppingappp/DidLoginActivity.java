@@ -70,10 +70,11 @@ public class DidLoginActivity extends AppCompatActivity {
         //
 
         //
-        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+        etSearch.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     String title = etSearch.getText().toString();
                     Intent intent = new Intent(DidLoginActivity.this,DidSearch.class);
                     intent.putExtra("userId",userId);

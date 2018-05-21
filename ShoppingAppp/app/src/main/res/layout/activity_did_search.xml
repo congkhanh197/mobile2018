@@ -38,6 +38,8 @@
         android:background="@drawable/dlg_search_area"
         android:hint="Discover you items"
         android:textAlignment="center"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="@+id/ds_top_bar"
         app:layout_constraintEnd_toEndOf="@+id/ds_top_bar"
         app:layout_constraintStart_toStartOf="@+id/ds_top_bar"
