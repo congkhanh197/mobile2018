@@ -9,7 +9,7 @@ import categoryController from './controllers/categories';
 import searchController from './controllers/search';
 import genreController from './controllers/genre';
 import pictureController from './controllers/picture';
-
+import orderController from './controllers/order';
 
 
 /**
@@ -59,6 +59,7 @@ router.use('/category', categoryController);
 router.use('/search', searchController);
 router.use('/genre',genreController);
 router.use('/picture',pictureController);
+router.use('/order',orderController);
 
 
 export default router;

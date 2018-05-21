@@ -1,5 +1,5 @@
 import bookshelf from '../database_config';
-
+import Picture from './picture';
 const TABLE_NAME = 'm_products';
 
 /**
@@ -42,7 +42,9 @@ class Product extends bookshelf.Model {
   get hasTimestamps() {
     return false;
   }
-
+  picture() {
+    return this.hasMany(Picture, 'product_id');
+  }
 }
 
 export default Product;

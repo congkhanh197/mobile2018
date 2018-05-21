@@ -17,11 +17,22 @@ export function getCartItemByUserId(userId) {
  *
  */
 export function createCartItem(cartItem) {
-    return new CartItem({ 
-      userId:cartItem.userId,
-      quantity:cartItem.quantity,
-      productId:cartItem.productId
-    }).save(null, { method: 'insert' }).then(cartItem => cartItem);
+    return new CartItem({
+        user_id:cartItem.userId,
+        product_id:cartItem.productId
+    }).fetch()
+    .then(data => {
+        if (!data) 
+            return new CartItem({ 
+                userId:cartItem.userId,
+                quantity:cartItem.quantity,
+                productId:cartItem.productId
+            }).save(null, { method: 'insert' }).then(cartItem => cartItem);
+        else {
+            cartItem.quantity = data.attributes.quantity + 1;
+            return updateCartItem(cartItem);
+        }
+    });
 }
   
 /**

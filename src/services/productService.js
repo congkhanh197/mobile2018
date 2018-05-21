@@ -6,8 +6,10 @@ import Product from '../models/product';
  * @return {Promise}
  */
 export function getAllProducts() {
-    return Product.fetchAll(); 
-  }
+  return Product.fetchAll({
+    withRelated: ['picture']
+  }); 
+}
   
 /**
  * Get a product.
@@ -16,15 +18,17 @@ export function getAllProducts() {
  * @return {Promise}
  */
 export function getProductById(id) {
-    return new Product({ id }).fetch()
-      .then(product => {
-        if (!product) {
-          throw new Object({status:404, message:"Product not found"});
-        }
-  
-        return product;
-      }); 
-  }
+  return new Product({ id }).fetch({
+    withRelated: ['picture']
+  })
+  .then(product => {
+    if (!product) {
+      throw new Object({status:404, message:"Product not found"});
+    }
+
+    return product;
+  }); 
+}
   
 /**
  * Get product by category.
@@ -33,15 +37,17 @@ export function getProductById(id) {
  * @return {Promise}
  */
 export function getProductByCategoryId(categoryId) {
-    return new Product().where({category_id:categoryId}).fetchAll()
-      .then(products => {
-        if (!products) {
-          throw new Object({status:404, message:"Product not found"});
-        }
-  
-        return products;
-      }); 
-  }
+  return new Product().where({category_id:categoryId}).fetchAll({
+    withRelated: ['picture']
+  })
+  .then(products => {
+    if (!products) {
+      throw new Object({status:404, message:"Product not found"});
+    }
+
+    return products;
+  }); 
+}
 
 /**
  * Get product by genre.
@@ -50,15 +56,17 @@ export function getProductByCategoryId(categoryId) {
  * @return {Promise}
  */
 export function getProductByGenreId(genreId) {
-    return new Product().where({genre_id:genreId}).fetchAll()
-      .then(products => {
-        if (!products) {
-          throw new Object({status:404, message:"Product not found"});
-        }
-  
-        return products;
-      }); 
-  }
+    return new Product().where({genre_id:genreId}).fetchAll({
+      withRelated: ['picture']
+    })
+    .then(products => {
+      if (!products) {
+        throw new Object({status:404, message:"Product not found"});
+      }
+
+      return products;
+    }); 
+}
 
 /**
  * Create new product.
