@@ -61,6 +61,16 @@ public class DidClickPayActivity extends AppCompatActivity {
                 DidClickPayActivity.this.startActivity(intent);
             }
         });
+        dcp_bPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    requestst();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 
 
@@ -79,6 +89,10 @@ public class DidClickPayActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 Toast.makeText(DidClickPayActivity.this,"Sending order successed",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(DidClickPayActivity.this, DidLoginActivity.class);
+                intent.putExtra("userId", userId);
+                DidClickPayActivity.this.startActivity(intent);
+                finish();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -87,6 +101,7 @@ public class DidClickPayActivity extends AppCompatActivity {
 
             }
         });
+        requestQueue.add(jsonObjectRequest);
     }
     public void initst(){
         dcp_tvTotalPrice.setText("$"+price);
