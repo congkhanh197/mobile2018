@@ -52,10 +52,11 @@ public class DlgItemAdapter extends RecyclerView.Adapter<DlgItemAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         //holder.iPopItem.setBackground();
-        holder.tvItemName.setText(dlgItems.get(position).getName());
-        holder.tvItemOriginalPrice.setText(dlgItems.get(position).getOriginalPrice());
-        holder.tvItemPrice.setText(dlgItems.get(position).getPrice());
-
+		DlgItem item = dlgItems.get(position);
+        holder.tvItemName.setText(item.getName());
+        holder.tvItemOriginalPrice.setText(item.getOriginalPrice());
+        holder.tvItemPrice.setText(item.getPrice());
+		ImageAdapter.setImageAdapter(item.getImgURL(),holder.iPopItem);
         //
         holder.iPopItem.setOnClickListener(new View.OnClickListener() {
             @Override
