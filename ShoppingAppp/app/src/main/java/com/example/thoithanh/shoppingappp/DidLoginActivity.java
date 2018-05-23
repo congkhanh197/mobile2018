@@ -1,20 +1,15 @@
 package com.example.thoithanh.shoppingappp;
 
-import android.app.VoiceInteractor;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +26,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DidLoginActivity extends AppCompatActivity {
     int userId;
@@ -96,15 +90,17 @@ public class DidLoginActivity extends AppCompatActivity {
         //Categories
         initRVCat();
 
+		//Recommend Items
+		//initRVRecommendItems();
+
         //Poppular Items
         initRVPopItems();
 
-        //Recommend Items
-        initRVRecommendItems();
 
 
-        //for test
-        ImageButton btnTest = (ImageButton)findViewById(R.id.bMenu);
+
+        // for test
+        ImageButton btnTest = findViewById(R.id.bMenu);
         btnTest.setOnClickListener(new View.OnClickListener() {
             //When click specific category, code here:
             @Override
@@ -120,7 +116,7 @@ public class DidLoginActivity extends AppCompatActivity {
 
     }
     public void initRVCat(){
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rvCats);
+        RecyclerView recyclerView = findViewById(R.id.rvCats);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
@@ -140,17 +136,20 @@ public class DidLoginActivity extends AppCompatActivity {
 
     }
     public void initRVPopItems(){
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rvPopItems);
+        RecyclerView recyclerView = findViewById(R.id.rvPopItems);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
         //
         arrayPopItems = new ArrayList<DlgItem>();
+		final DlgItemAdapter dlgItemAdapter = new DlgItemAdapter(userId,arrayPopItems,getApplicationContext());
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String URL = "http://149.28.26.145:8080/api/products/all";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL,
+			null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+            	Log.e("DidLoginActivity, data:", response.toString());
                 try {
                     JSONArray data = response.getJSONArray("data");
                     for (int i=0; i<data.length();i++){
@@ -158,9 +157,11 @@ public class DidLoginActivity extends AppCompatActivity {
                         int itemId = item.getInt("id");
                         String name = item.getString("name");
                         String price = "$"+item.getInt("price");
-                        //String imgURL =
-                        arrayPopItems.add(new DlgItem(itemId,name,price,price,""));
 
+                        String imgURL = item.getJSONArray("picture")
+							.getJSONObject(0).getString("link");
+                        arrayPopItems.add(new DlgItem(itemId,name,price,price,imgURL));
+						dlgItemAdapter.notifyDataSetChanged();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -173,9 +174,7 @@ public class DidLoginActivity extends AppCompatActivity {
             }
         });
         requestQueue.add(jsonObjectRequest);
-
-
-
+		recyclerView.setAdapter(dlgItemAdapter);
 
         //array PopItems get from JSON response later
 //        arrayPopItems.add(new DlgItem(1,"Watch 1","$99.99","$119.99",""));
@@ -185,58 +184,51 @@ public class DidLoginActivity extends AppCompatActivity {
 //        arrayPopItems.add(new DlgItem(1,"Watch 5","$99.99","$119.99",""));
 //        arrayPopItems.add(new DlgItem(1,"Watch 6","$99.99","$119.99",""));
 
-        DlgItemAdapter dlgItemAdapter = new DlgItemAdapter(userId,arrayPopItems,getApplicationContext());
-        recyclerView.setAdapter(dlgItemAdapter);
     }
     public void initRVRecommendItems(){
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rvRecommendItems);
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        recyclerView.setLayoutManager(layoutManager);
+      	RecyclerView rvRecommendItems = findViewById(R.id.rvRecommendItems);
+		rvRecommendItems.setHasFixedSize(true);
+		LinearLayoutManager layoutManagerRec = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+		rvRecommendItems.setLayoutManager(layoutManagerRec);
+		//
+		arrayPopItems = new ArrayList<DlgItem>();
+		final DlgItemAdapter dlgItemAdapterRec = new DlgItemAdapter(userId,arrayPopItems,getApplicationContext());
+		RequestQueue requestQueueRec = Volley.newRequestQueue(this);
+		String URL = "http://149.28.26.145:8080/api/products/category/2";
+		JsonObjectRequest jsonObjectRequestRec = new JsonObjectRequest(Request.Method.GET, URL,
+			null, new Response.Listener<JSONObject>() {
+			@Override
+			public void onResponse(JSONObject response) {
+				Log.e("DidLoginActivity, data:", response.toString());
+				try {
+					JSONArray data = response.getJSONArray("data");
+					for (int i=0; i<data.length();i++){
+						JSONObject item = data.getJSONObject(i);
+						int itemId = item.getInt("id");
+						String name = item.getString("name");
+						String price = "$"+item.getInt("price");
 
-        ///
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        arrayRecItems = new ArrayList<DlgItem>();
-        String URL = "http://149.28.26.145:8080/api/products/all";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray data = response.getJSONArray("data");
-                    for (int i=0; i<data.length();i++){
-                        JSONObject item = data.getJSONObject(i);
-                        int itemId = item.getInt("id");
-                        String name = item.getString("name");
-                        String price = "$"+item.getInt("price");
-                        //String imgURL =
-                        arrayRecItems.add(new DlgItem(itemId,name,price,price,""));
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(DidLoginActivity.this, "Something went wrong!!!", Toast.LENGTH_LONG).show();
-            }
-        });
-        ///
-
-//        arrayRecItems = new ArrayList<DlgItem>();
-//        arrayRecItems.add(new DlgItem("Watch 1","$99.99","$119.99",""));
-//        arrayRecItems.add(new DlgItem("Watch number 2","$99.99","$119.99",""));
-        requestQueue.add(jsonObjectRequest);
-
-        DlgItemAdapter dlgItemAdapter = new DlgItemAdapter(userId,arrayRecItems,getApplicationContext());
-        recyclerView.setAdapter(dlgItemAdapter);
-
+						String imgURL = item.getJSONArray("picture")
+							.getJSONObject(0).getString("link");
+						arrayPopItems.add(new DlgItem(itemId,name,price,price,imgURL));
+						dlgItemAdapterRec.notifyDataSetChanged();
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		}, new Response.ErrorListener() {
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				Toast.makeText(DidLoginActivity.this, "Something went wrong!!!", Toast.LENGTH_LONG).show();
+			}
+		});
+		requestQueueRec.add(jsonObjectRequestRec);
+		rvRecommendItems.setAdapter(dlgItemAdapterRec);
 
     }
     public void setTvNumberItemInCart(final TextView tvNumberItemInCart, int userId){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-
         String URL = "http://149.28.26.145:8080/api/cart/" + userId;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
             @Override
@@ -257,7 +249,4 @@ public class DidLoginActivity extends AppCompatActivity {
         });
         requestQueue.add(jsonObjectRequest);
     }
-
-
-
 }
