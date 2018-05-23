@@ -73,6 +73,7 @@ public class DidLoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(DidLoginActivity.this,DidSearch.class);
                     intent.putExtra("userId",userId);
                     intent.putExtra("title", title);
+                    Log.e("Didlogin", title);
                     DidLoginActivity.this.startActivity(intent);
                     return true;
                 }
@@ -105,12 +106,10 @@ public class DidLoginActivity extends AppCompatActivity {
             //When click specific category, code here:
             @Override
             public void onClick(View v) {
-
-
-                //String name = "aa";
-                Intent intent = new Intent(DidLoginActivity.this,DidSearch.class);
-                //intent.putExtra("name", name);
-                DidLoginActivity.this.startActivity(intent);
+//                //String name = "aa";
+//                Intent intent = new Intent(DidLoginActivity.this,DidSearch.class);
+//                //intent.putExtra("name", name);
+//                DidLoginActivity.this.startActivity(intent);
             }
         });
 

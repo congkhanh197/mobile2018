@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -88,7 +89,7 @@ public class DidSearch extends AppCompatActivity {
     }
 
     public void initRVDsItems(){
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rvDsItems);
+        RecyclerView recyclerView = findViewById(R.id.rvDsItems);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
@@ -98,42 +99,93 @@ public class DidSearch extends AppCompatActivity {
         final DsItemAdapter dsItemAdapter = new DsItemAdapter(userId,arrayDsItems,getApplicationContext(),ds_tvNumberItemInCart);
         recyclerView.setAdapter(dsItemAdapter);
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final RequestQueue requestQueue = Volley.newRequestQueue(this);
         String URL;
         if (category == -1){
             URL = "http://149.28.26.145:8080/api/search/"+title;
+            Log.e("did search", title);
+			JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
+				@Override
+				public void onResponse(JSONObject response) {
+					try {
+						JSONArray data = response.getJSONArray("data");
+
+						for (int i=0; i<data.length();i++){
+							JSONObject item = data.getJSONObject(i);
+							final int itemId = item.getInt("id");
+							String url = "http://149.28.26.145:8080/api/products/"+itemId;
+							JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+								@Override
+								public void onResponse(JSONObject response) {
+									try {
+										JSONObject item = response.getJSONObject("data");
+										String name = item.getString("name");
+										String price = "$"+item.getInt("price");
+										String description = item.getString("description");
+										String imgURL = item.getJSONArray("picture")
+											.getJSONObject(0).getString("link");
+										arrayDsItems.add(new DsItem(itemId,imgURL,name,description,price,price));
+										dsItemAdapter.notifyDataSetChanged();
+									} catch (JSONException e) {
+											e.printStackTrace();
+										}
+									}
+							}, new Response.ErrorListener() {
+								@Override
+								public void onErrorResponse(VolleyError error) {
+									Toast.makeText(DidSearch.this, "Something went wrong!!!", Toast.LENGTH_LONG).show();
+								}
+							});
+							requestQueue.add(jsonObject);
+
+
+						}
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+			}, new Response.ErrorListener() {
+				@Override
+				public void onErrorResponse(VolleyError error) {
+					Toast.makeText(DidSearch.this, "Something went wrong!!!", Toast.LENGTH_LONG).show();
+				}
+			});
+			requestQueue.add(jsonObjectRequest);
         }
         else{
             URL = "http://149.28.26.145:8080/api/products/category/"+category;
+			JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
+				@Override
+				public void onResponse(JSONObject response) {
+					try {
+						JSONArray data = response.getJSONArray("data");
+
+						for (int i=0; i<data.length();i++){
+							JSONObject item = data.getJSONObject(i);
+							int itemId = item.getInt("id");
+							String name = item.getString("name");
+							String price = "$"+item.getInt("price");
+							String imgURL = item.getJSONArray("picture")
+								.getJSONObject(0).getString("link");
+							String description = item.getString("description");
+							arrayDsItems.add(new DsItem(itemId,imgURL,name,description,price,price));
+							dsItemAdapter.notifyDataSetChanged();
+						}
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+			}, new Response.ErrorListener() {
+				@Override
+				public void onErrorResponse(VolleyError error) {
+					Toast.makeText(DidSearch.this, "Something went wrong!!!", Toast.LENGTH_LONG).show();
+				}
+			});
+			requestQueue.add(jsonObjectRequest);
         }
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray data = response.getJSONArray("data");
-
-                    for (int i=0; i<data.length();i++){
-                        JSONObject item = data.getJSONObject(i);
-                        int itemId = item.getInt("id");
-                        String name = item.getString("name");
-                        Log.d("shoe name", name);
-                        String price = "$"+item.getInt("price");
-                        String imgURL = "";
-                        String description = item.getString("description");
-                        arrayDsItems.add(new DsItem(itemId,imgURL,name,description,price,price));
-                    }
-                    dsItemAdapter.notifyDataSetChanged();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(DidSearch.this, "Something went wrong!!!", Toast.LENGTH_LONG).show();
-            }
-        });
 
 
 
@@ -150,7 +202,7 @@ public class DidSearch extends AppCompatActivity {
 //        arrayDsItems.add(new DsItem("","Watch 10",des,"$199.99","$299.99"));
 
 
-        requestQueue.add(jsonObjectRequest);
+
 
     }
     public void setTvNumberItemInCart(final TextView tvNumberItemInCart, int userId){

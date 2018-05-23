@@ -3,6 +3,7 @@ package com.example.thoithanh.shoppingappp;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
@@ -20,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -101,13 +103,15 @@ public class DsItemAdapter extends RecyclerView.Adapter<DsItemAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         //holder.ds_iItem.setBackground();
-        holder.ds_tvName.setText(dsItems.get(position).getName());
-        holder.ds_tvDescription.setText(dsItems.get(position).getDescription());
-        holder.ds_tvPrice.setText(dsItems.get(position).getPrice());
-        holder.ds_tvOriginalPrice.setText(dsItems.get(position).getOriginalPrice());
-
+		DsItem item = dsItems.get(position);
+        holder.ds_tvName.setText(item.getName());
+        holder.ds_tvDescription.setText(item.getDescription());
+        holder.ds_tvPrice.setText(item.getPrice());
+        holder.ds_tvOriginalPrice.setText(item.getOriginalPrice());
+		Uri uri = Uri.parse(item.getImgURL());
+		Glide.with(holder.itemView).load(uri).into(holder.ds_iItem);
         //
-        holder.ds_iItem.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //String name = "aa";

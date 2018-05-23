@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -73,9 +74,9 @@ public class DidClickCartActivity extends AppCompatActivity {
 //        dccItems.add(new DccItem("","Fourfur tenf loius finouls","$1299.99","1399.00",1));
 
         final DccItemAdapter dccItemAdapter = new DccItemAdapter(userId, dccItems,getApplicationContext(),dcc_tvTotalPrice,totalPrice);
-        recyclerView.setAdapter(dccItemAdapter);
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        final RequestQueue requestQueue = Volley.newRequestQueue(this);
         String URL = "http://149.28.26.145:8080/api/cart/" + userId;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
@@ -90,15 +91,38 @@ public class DidClickCartActivity extends AppCompatActivity {
 
                         totalPrice += product.getInt("price")*item.getInt("quantity");
 
-                        int itemId = product.getInt("id");
+                        final int itemId = product.getInt("id");
                         //String itemURL
-                        String itemName = product.getString("name");
+                        final String itemName = product.getString("name");
                         String price = "$"+product.getInt("price");
-                        String originalPrice = "$"+product.getInt("price");
-                        int quantity = item.getInt("quantity");
+                        final String originalPrice = "$"+product.getInt("price");
+                        final int quantity = item.getInt("quantity");
+
+						String url = "http://149.28.26.145:8080/api/products/"+itemId;
+						JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+							@Override
+							public void onResponse(JSONObject response) {
+								try {
+									JSONObject item = response.getJSONObject("data");
+									String price = "$"+item.getInt("price");
+									String imgURL = item.getJSONArray("picture")
+										.getJSONObject(0).getString("link");
+									dccItems.add(new DccItem(itemId,imgURL,itemName,price,originalPrice,quantity));
+									dccItemAdapter.notifyDataSetChanged();
+								} catch (JSONException e) {
+									e.printStackTrace();
+								}
+							}
+						}, new Response.ErrorListener() {
+							@Override
+							public void onErrorResponse(VolleyError error) {
+								Toast.makeText(getApplicationContext(), "Something went wrong!!!", Toast.LENGTH_LONG).show();
+							}
+						});
+						requestQueue.add(jsonObject);
 
                         //
-                        dccItems.add(new DccItem(itemId,"",itemName,price,originalPrice,quantity));
+
 
 
                     }
@@ -116,5 +140,6 @@ public class DidClickCartActivity extends AppCompatActivity {
         });
 
         requestQueue.add(jsonObjectRequest);
+		recyclerView.setAdapter(dccItemAdapter);
     }
 }

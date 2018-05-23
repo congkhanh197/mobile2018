@@ -1,6 +1,7 @@
 package com.example.thoithanh.shoppingappp;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,9 +56,13 @@ public class DccItemAdapter extends RecyclerView.Adapter<DccItemAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         //holder.dcc_iItem.setBackground();
+		DccItem item = dccItems.get(position);
         holder.dcc_tvItemName.setText(dccItems.get(position).getName());
         holder.dcc_tvItemPrice.setText(dccItems.get(position).getPrice());
         holder.dcc_etQuantity.setText(dccItems.get(position).getQuantity().toString());
+		Uri uri = Uri.parse(item.getImgURL());
+		Glide.with(holder.itemView).load(uri).into(holder.dcc_iItem);
+
         holder.dcc_bDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

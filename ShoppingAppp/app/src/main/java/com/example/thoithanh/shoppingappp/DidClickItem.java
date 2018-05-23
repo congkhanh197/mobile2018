@@ -1,10 +1,12 @@
 package com.example.thoithanh.shoppingappp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -19,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class DidClickItem extends AppCompatActivity {
-    ArrayList<DcImage> dcImages;
+    ArrayList<DcImage> dcImages = new ArrayList<>();
     int userId;
     int itemId;
 
@@ -49,6 +52,19 @@ public class DidClickItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_did_click_item);
 
+		// for test
+		ImageButton btnTest = findViewById(R.id.dc_bMenu);
+		btnTest.setOnClickListener(new View.OnClickListener() {
+			//When click specific category, code here:
+			@Override
+			public void onClick(View v) {
+//				Intent intent = new Intent(DidClickItem.this, DidLoginActivity.class);
+//				intent.putExtra("")
+//				startActivity(new Intent());
+				DidClickItem.this.onBackPressed();
+			}
+		});
+
         //get Intent
         Intent intent = getIntent();
         userId = intent.getIntExtra("userId",0);
@@ -63,6 +79,8 @@ public class DidClickItem extends AppCompatActivity {
         dc_etSearch = findViewById(R.id.dc_etSearch);
         dc_bAdd = findViewById(R.id.dc_bAdd);
         dc_bCart = findViewById(R.id.dc_bCart);
+        dc_iMainImg = findViewById(R.id.dc_iMainImg);
+
         //
 
 
@@ -133,11 +151,12 @@ public class DidClickItem extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
     public void initRequest(){
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.dc_rvImages);
+        RecyclerView recyclerView = findViewById(R.id.dc_rvImages);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
         //
+		final DcImageAdapter dcImageAdapter = new DcImageAdapter(dcImages,getApplicationContext());
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String URL = "http://149.28.26.145:8080/api/products/" + itemId;
@@ -150,7 +169,18 @@ public class DidClickItem extends AppCompatActivity {
                     String info = data.getString("info");
                     String description = data.getString("description");
                     String price = "$" + data.getInt("price");
-
+					JSONArray imgURLList = data.getJSONArray("picture");
+					int i = 0;
+					for (i=0; i<imgURLList.length();i++){
+						JSONObject imageURL = imgURLList.getJSONObject(i);
+						dcImages.add(new DcImage(imageURL.getString("link")));
+						Log.e("DidClickItem", "Link"+imageURL.getString("link"));
+						dcImageAdapter.notifyDataSetChanged();
+					}
+					Uri uri = Uri.parse(data.getJSONArray("picture")
+						.getJSONObject(i-1)
+						.getString("link"));
+					Glide.with(DidClickItem.this).load(uri).into(dc_iMainImg);
                     dc_tvName.setText(name);
                     dc_tvPrice.setText(price);
                     dc_tvDescription.setText(description);
@@ -170,17 +200,17 @@ public class DidClickItem extends AppCompatActivity {
         //
 
 
-        dcImages = new ArrayList<DcImage>();
-        dcImages.add(new DcImage(""));
-        dcImages.add(new DcImage(""));
-        dcImages.add(new DcImage(""));
-        dcImages.add(new DcImage(""));
-        dcImages.add(new DcImage(""));
+//        dcImages = new ArrayList<DcImage>();
+//        dcImages.add(new DcImage(""));
+//        dcImages.add(new DcImage(""));
+//        dcImages.add(new DcImage(""));
+//        dcImages.add(new DcImage(""));
+//        dcImages.add(new DcImage(""));
 
         //
         requestQueue.add(jsonObjectRequest);
         //
-        DcImageAdapter dcImageAdapter = new DcImageAdapter(dcImages,getApplicationContext());
+
         recyclerView.setAdapter(dcImageAdapter);
     }
     public void setTvNumberItemInCart(final TextView tvNumberItemInCart, int userId){
